@@ -1,0 +1,37 @@
+<body id="view-img">
+  <div class="col-sm-4" id="show-center">
+    <div class="#" style="width: 34rem;">
+      <div class="card center" >
+
+
+        <% if @item.itemavatars.attached? == true%>
+                       <img class="a" <%= image_tag @item.itemavatars, alt: 'pic' %><br>
+        <%else%>
+                       <img class="card-img-top" src="<%=@item.image_url%>" alt="Card image">
+        <%end%>
+        <!--<img class = "card-img-top" src="<%= @item.image_url%>" alt="">  -->
+
+          <div class="card-body corp">
+              <b>Nom: </b><%= @item.title%>
+              <div class="card-title">
+              <b>Prix: <span>$</span> </b><%= @item.price%>
+              </div>
+            <div class="card-text">
+              <b>Détails:</b> <%= @item.description%>
+            </div>
+          </div>
+            <%if current_user == is_admin?%>
+              <h6>Upload new photo ?</h6>
+                <%= form_tag  item_itemavatars_path(@item.id), multipart: true do %>
+                  <%= file_field_tag :avatar %>
+                  <%= submit_tag "mettre à jour" %>
+               <%end%>
+            <%else%>
+                  <%=link_to "ajouter au panier",carts_path ,class:"btn btn-primary", type:"button",method: :POST%>
+            <%end%>
+
+        </div>
+
+      </div>
+  </div>
+</body>

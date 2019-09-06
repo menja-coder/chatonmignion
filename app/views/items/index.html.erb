@@ -1,0 +1,52 @@
+<!--########################-->
+<!--####   container  ######-->
+<!--########################-->
+
+<section class="container">
+  <div class="containerTitles">
+      <button class="buttonload">
+        <i class="fa fa-spinner fa-spin"></i>Nos Chatons Mignons
+      </button>
+    <div class="d-flex flex-row">
+      <div class="row">
+        <%@items.each do |item|%>
+          <div class="col-sm-4">
+            <div class="#" style="width: 20rem;">
+              <div class="card">
+
+                <% if item.itemavatars.attached? == true%>
+                               <img class="a" <%= image_tag item.itemavatars, alt: 'pic' %><br>
+                <%else%>
+                               <img class="card-img-top" src="<%=item.image_url%>" alt="Card image">
+                <%end%>
+                  <div class="card-body corp">
+                    <h4 class="card-title"><%=item.title%></h4>
+                      <p class="card-text">Some example text.</p>
+                        <a href="<%= item_path(item.id) %>" class="btn btn-outline-warning">show</a>
+                        <%if current_user == is_admin?%>
+                        <%= link_to "Delete", item_path(item.id) ,method: :delete , class: "btn btn-outline-warning" , style: "width:auto"%>
+                        <%else%>
+                        <%end%>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<%if current_user == is_admin?%>
+<%=link_to "ajouter ",new_item_path,class:"btn btn-primary", type:"button"%>
+<%else%>
+<%end%>
+</section>
+<footer>
+        <div class="container-footer">
+            <div class="footer">
+                <h1>Footer</h1><br />
+                <p>E-commerce projet</p><br />
+                <center class="cp"> ©Copyright 2019 par CoderBrain Tous droits réservés.</center>
+            </div>
+        </div>
+    </footer>

@@ -1,0 +1,38 @@
+<body id="show-pannier"> 
+  <h1 id="title-table">Les articles dans votre panier:</h1>
+  <table class="table" id="table-cart">
+      <thead >
+        <tr>
+          <th >Produits</th>
+          <th >Prix</th>
+          <th></th>
+        </tr>
+      </thead>
+      
+    <tbody>
+        <% @tab.each do |tab| %>
+            <tr>
+              <td><%=tab.title %></td>
+              <td><%=tab.price%></td>
+              <td>
+                <%= link_to "Enlever du panier",cart_path(@cart.id) ,method: :delete , class: "btn btn-outline-warning" , style: "width:auto"%>
+              </td>
+            </tr>
+        <%end%>
+
+        <tr id="total">
+          <td >Prix total</td>
+          <td ><%=@count.to_f%> €</td>
+          <td>
+            <%= link_to "Passer Commande", orders_path, class:"btn btn-success", method: :POST, style: "width:auto", remote:true%>
+          </td>
+        </tr>
+
+        <div class="nbr_count">
+          <%=session[:nbr] %>
+        </div>
+
+    </tbody>
+  </table>
+</body>
+

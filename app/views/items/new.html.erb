@@ -1,0 +1,24 @@
+
+ <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+
+    <center><%= label_tag 'title' %></center>
+    <center><%= text_field  'title', @item.title %></center>
+    <br /> <br />
+
+
+
+    <center><%= label_tag 'description' %></center>
+    <center><%= text_field 'description', @item.description %></center>
+    <br /> <br />
+
+
+    <center><%= label_tag 'price' %></center>
+    <center><%= number_field_tag 'price', @item %></center>
+    <br /> <br />
+    <center><%= label_tag 'image_url' %></center>
+    <center><%= url_field_tag 'image_url', @item.image_url%></center>
+     <br /> <br />
+     <center><%= submit_tag "Create item" %></center>
+
+<% end %>
